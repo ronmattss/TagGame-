@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
+
+
 
 public class AiScript : MonoBehaviour
 {
@@ -10,11 +13,12 @@ public class AiScript : MonoBehaviour
     [Header("Movement Properties")]
     public CharacterController2D AiMovement;
     public float runSpeed = 100f;
-    float horizontalMove = 1f;
+    float horizontalMove = 0f;
     [Header("Targets")]
     public GameObject player;
     bool jump = false;
     bool crouch = false;
+
     void Start()
     {
 
@@ -28,9 +32,10 @@ public class AiScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        MoveToPlayer(player);
-        AiMovement.Move((horizontalMove * runSpeed) * Time.fixedDeltaTime, crouch, true);
+      //  MoveToPlayer(player);
+        AiMovement.Move((horizontalMove * runSpeed) * Time.fixedDeltaTime, crouch, jump);
         jump = false;
+        Debug.Log(jump);
     }
 
 
@@ -89,13 +94,14 @@ public class AiScript : MonoBehaviour
     }
 
 
-    // move towards player prototype code
+    // move towards player prototype code (Noob Ai)
+    // Pathfinding algorithm will be used for better Ai
 
     void MoveToPlayer(GameObject _player)
     {
         GameObject enemy = this.gameObject;
         
-        // if enemy is on the right side of the player with same y coordinates
+        // if enemy is on the right side of the player with same y coordinates 
         if(enemy.transform.position.x > _player.transform.position.x && enemy.transform.position.y == _player.transform.position.y)
         {
             horizontalMove = -1f;
@@ -115,17 +121,21 @@ public class AiScript : MonoBehaviour
         else if (enemy.transform.position.x > _player.transform.position.x &&  enemy.transform.position.y > _player.transform.position.y)
         {
             horizontalMove = -1f;
-            // jump?
+            
         }
         else if (enemy.transform.position.x < _player.transform.position.x && enemy.transform.position.y > _player.transform.position.y)
         {
             horizontalMove = 1f;
-            // jump?
+            
         }
 
-        else if (enemy.transform.position.y < _player.transform.position.y)
+        else if (enemy.transform.position.y <= _player.transform.position.y)
         {
-            // jump?
+            // jump 
+            // make a trigger for platforms that enable the jump if player.y is > enemy.y
+            
+            jump = true;
+            Debug.Log(jump);
         }
 
     }
