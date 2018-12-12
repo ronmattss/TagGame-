@@ -39,12 +39,16 @@ public class AiMovement : MonoBehaviour {
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        target = GameObject.FindGameObjectWithTag("Player").transform;
 
         if (target == null)
         {
             Debug.LogError("No Player found?");
+            this.gameObject.SetActive(false);
+            
             return;
         }
+ 
 
         // Start a new path to the target position, return the result to the OnPathComplete method
         seeker.StartPath(transform.position, target.position, OnPathComplete);
