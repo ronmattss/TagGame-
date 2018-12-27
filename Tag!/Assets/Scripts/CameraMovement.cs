@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public Transform targetPlayer;
+
+    public float smoothSpeed = 0.125f;
+    public Vector3 offset;
+
+    private void FixedUpdate()
+    {
+        Vector3 desiredPosition = targetPlayer.position + offset;
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition,smoothSpeed);
+        transform.position = smoothedPosition;
+    }
+
 }

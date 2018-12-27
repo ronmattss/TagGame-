@@ -43,7 +43,7 @@ public class AiMovement : MonoBehaviour {
 
         if (target == null)
         {
-            Debug.LogError("No Player found?");
+          //  Debug.LogError("No Player found?");
             this.gameObject.SetActive(false);
             
             return;
@@ -60,7 +60,7 @@ public class AiMovement : MonoBehaviour {
     {
         if(target == null)
         {
-            // TODO: Insert a player search here.
+            // TODO: Insert a player search here or Target Search.
           yield  return  false;
         }
 
@@ -73,7 +73,7 @@ public class AiMovement : MonoBehaviour {
 
     public  void OnPathComplete(Path p)
     {
-        Debug.Log("Got a path. does we have an error?" + p.error);
+        //Debug.Log("Got a path. does we have an error?" + p.error);
         if(!p.error)
         {
             path = p;
@@ -86,7 +86,7 @@ public class AiMovement : MonoBehaviour {
     {
         if (target == null)
         {
-            // TODO: Insert a player search here.
+            // TODO: Insert a player search here or target search. use bubble sort?
              return;
         }
 
@@ -97,7 +97,7 @@ public class AiMovement : MonoBehaviour {
         {
             if(pathIsEnded)
                return;
-            Debug.Log("End of path reached");
+           // Debug.Log("End of path reached");
             pathIsEnded = true;
             return;
             
@@ -113,21 +113,9 @@ public class AiMovement : MonoBehaviour {
 
 
         // jump if target is in a higher platform
-        if ((isGrounded == true) && path.vectorPath[currentWaypoint].y < target.position.y)
-        {
-           dir = new Vector3(x, y* jumpForce, z);
-            Debug.Log(dir.y +"NICE WAT");
-            isGrounded = false;
-
-        }
-        else
-        {
-           dir = new Vector3(x, y*0, z);
-            Debug.Log(dir.y + " !WAT");
-            isGrounded = false;
-
-
-        }
+    
+           dir = new Vector3(x, y, z);
+                    
         dir *= speed * Time.fixedDeltaTime;
         
         rb.AddForce(dir, fMode);
@@ -146,7 +134,7 @@ public class AiMovement : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.name);
+       // Debug.Log(collision.name);
         if (collision.gameObject.tag == "floor")
             this.isGrounded = true;
         else

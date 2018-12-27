@@ -71,7 +71,7 @@ public class AiScript : MonoBehaviour
                 horizontalMove = -1f;
                 this.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.left, ForceMode2D.Force);
                 
-                Debug.Log("collided with" + collision.gameObject.tag);
+               //Debug.Log("collided with" + collision.gameObject.tag);
 
 
             }

@@ -7,6 +7,9 @@ TagManager:
   - boundary
   - NPC
   - floor
+  - target
+  - Enemy
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -16,9 +19,9 @@ TagManager:
   - UI
   - 
   - 
+  - Weapons
+  - Enemy
   - Obstacles
-  - 
-  - 
   - 
   - 
   - 
@@ -43,4 +46,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 667079521
+    locked: 0
+  - name: Obstacle
+    uniqueID: 2710160293
+    locked: 0
+  - name: Player
+    uniqueID: 548981449
+    locked: 0
+  - name: Weapons
+    uniqueID: 1264024023
+    locked: 0
+  - name: Enemy
+    uniqueID: 817224955
     locked: 0

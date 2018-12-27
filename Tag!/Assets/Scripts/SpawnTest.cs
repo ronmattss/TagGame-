@@ -19,14 +19,19 @@ public class SpawnTest : MonoBehaviour {
         
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
+    private void Awake()
+    {
+        someObject.gameObject.SetActive(true);
+    }
+
+    // Update is called once per frame
+    void Update () {
 
         if(Input.GetKeyDown(KeyCode.T))
         {
             xCoordinate = Random.Range(minX, maxX);
             yCoordinate = Random.Range(minY, maxY);
+            
             Instantiate(someObject,new Vector3( xCoordinate,yCoordinate,0), Quaternion.identity);
         }
 
